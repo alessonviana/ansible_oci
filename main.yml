@@ -8,7 +8,7 @@
       state: present
       user: opc
       key: "{{ lookup('file', '{{ item  }}') }}"
-    loop: "{{ lookup('fileglob', 'files/authorized_keys/alesson_viana.pub', wantlist=True)  }}"
+    loop: "{{ lookup('fileglob', 'files/authorized_keys/*.pub', wantlist=True)  }}"
 
 - name: Create a new directory
   hosts: oracle_linux
