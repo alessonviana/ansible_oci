@@ -2,10 +2,7 @@
 
 - name: Create a new directory
   hosts: oracle_linux
-  remote_user: "{{ username }}"
   become: yes
-  #vars:
-  #- username: opc
   tasks:
   - file:
       path: "/alesson.v/labs"
@@ -32,13 +29,11 @@
 - name: Install packages
   hosts: oracle_linux
   become: yes
-  remote_user: "{{ username }}"
   roles:
     - packages
 
 - name: install docker
   hosts: oracle_linux
   become: yes
-  remote_user: "{{ username }}"
   roles:
     - docker
