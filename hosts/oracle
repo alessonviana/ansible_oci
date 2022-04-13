@@ -1,0 +1,7 @@
+[ubuntu]
+
+[oracle_linux]
+129.80.179.214
+
+[oracle_linux:vars]
+user:opc

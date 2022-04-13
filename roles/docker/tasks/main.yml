@@ -1,0 +1,39 @@
+---
+- include_vars:
+    file: "roles/docker/vars/vars.yml"
+
+- name: install docker dependencies
+  yum:
+    name:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+    state: present
+
+- name: add docker-ce repo
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+
+- name: install docker-ce
+  yum:
+    name: docker-ce
+    state: present
+
+- name: add user opc to group docker
+  user:
+    name: "{{ user }}"
+    groups: docker
+    append: yes
+
+- name: start docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: set ownership of /usr/local/bin
+  file:
+    path: /usr/local/bin
+    owner: "{{ user }}"
+    group: "{{ user }}"

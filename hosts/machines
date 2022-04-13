@@ -1,0 +1,17 @@
+[machine]
+192.168.23.203
+
+[web_server]
+
+[db]
+192.168.23.203
+
+[centos]
+192.168.23.203
+
+[ubuntu]
+ubuntu-machine ansible_ssh_host=192.168.23.204 ansible_ssh_user=alesson
+
+[oracle_linux]
+129.80.179.214
+
