@@ -2,10 +2,10 @@
 
 - name: Create a new directory
   hosts: oracle_linux
-  remote_user: '{{ user }}'
+  remote_user: "{{ username }}"
   become: yes
-  vars:
-  - user: opc
+  #vars:
+  #- username: opc
   tasks:
   - file:
       path: "/alesson.v/labs"
@@ -14,31 +14,31 @@
 #- name: create and copy files
 #  hosts: oracle_linux
 #  become: yes
-#  remote_user: "{{ user }}"
+#  remote_user: "{{ username }}"
 #  gather_facts: no
 #  tasks:
 #  - file:
 #      path: "/alesson.v/labs2/test.txt"
 #      state: touch
-#      owner: "{{ user }}"
-#      group: "{{ user }}"
+#      owner: "{{ username}}"
+#      group: "{{ username}}"
 #      mode: u=rwx,g-rwx,o-rwx
 #  - copy:
 #      remote_src: "/alesson.v/labs2/test.txt"
 #      dest: "/alesson.v/labs/test.txt"
-#      owner: "{{ user }}"
-#      group: "{{ user }}"
+#      owner: "{{ username}}"
+#      group: "{{ username}}"
 
 - name: Install packages
   hosts: oracle_linux
   become: yes
-  remote_user: "{{ user }}"
+  remote_user: "{{ username }}"
   roles:
     - packages
 
 - name: install docker
   hosts: oracle_linux
   become: yes
-  remote_user: "{{ user }}"
+  remote_user: "{{ username }}"
   roles:
     - docker
