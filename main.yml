@@ -32,13 +32,13 @@
 - name: Install packages
   hosts: oracle_linux
   become: yes
-  remote_user: opc
+  remote_user: "{{ user }}"
   roles:
     - packages
 
 - name: install docker
   hosts: oracle_linux
   become: yes
-  remote_user: opc
+  remote_user: "{{ user }}"
   roles:
     - docker
