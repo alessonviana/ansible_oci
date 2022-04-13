@@ -1,6 +1,4 @@
 ---
-#- include_vars:
-#    file: "roles/docker/vars/main.yml"
 
 - name: install docker dependencies
   yum:
