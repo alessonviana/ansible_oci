@@ -1,4 +1,14 @@
 ---
+- name: Configure authorized_keys
+  hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+  - authorized_key:
+      state: present
+      user: opc
+      key: "{{ lookup('file', '{{ item  }}') }}"
+    loop: "{{ lookup('fileglob', 'files/authorized_keys/alesson_viana.pub', wantlist=True)  }}"
 
 - name: Create a new directory
   hosts: oracle_linux
