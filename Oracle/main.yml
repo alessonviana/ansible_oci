@@ -47,3 +47,4 @@
   become: yes
   roles:
     - docker
+  tag: docker

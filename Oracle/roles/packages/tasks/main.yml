@@ -3,14 +3,7 @@
 - name: upgrade all packages
   yum: name=* state=latest
 
-- name: Install vim
+- name: Install packages list
   yum:
     state: present
-    name:
-      - vim
-
-- name: Install git
-  yum:
-    state: present
-    name:
-      - git
+    name: "{{ packages }}"

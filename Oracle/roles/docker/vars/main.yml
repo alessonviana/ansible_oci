@@ -1,1 +1,6 @@
 user: opc
+
+docker_dependence:
+ - yum-utils
+ - device-mapper-persistent-data
+ - lvm2
