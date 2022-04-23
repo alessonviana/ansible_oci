@@ -61,6 +61,7 @@
 - name: Install Docker compose
   hosts: oracle_linux
   become: yes
+  ignore_errors: yes
   roles:
     - compose
   tags: compose
