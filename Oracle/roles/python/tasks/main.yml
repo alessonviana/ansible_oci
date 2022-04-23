@@ -1,0 +1,28 @@
+- name: "Download python 3.7.3 source code"
+  get_url:
+    url: https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
+    dest: /usr/src/Python-3.7.3.tgz
+    mode: '0644'
+  become: yes
+
+- name: "Unpack python 3.7.3 source code"
+  unarchive:
+    src: /usr/src/Python-3.7.3.tgz
+    dest: /usr/src/
+    remote_src: yes
+  become: yes
+
+- name: "Run 'configure' target as root"
+  command: chdir=/usr/src/Python-3.7.3 ./configure --enable-optimizations
+  become: yes
+  tags: skip_ansible_lint
+
+- name: "Run 'make install' target as root"
+  make:
+    chdir: /usr/src/Python-3.7.3
+    target: install
+    file: /usr/src/Python-3.7.3/Makefile
+  notify: python installed
+  become: yes
+  tags: skip_ansible_lint
+...

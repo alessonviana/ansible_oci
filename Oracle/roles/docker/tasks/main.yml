@@ -32,5 +32,4 @@
     path: /usr/local/bin
     owner: "{{ user }}"
     group: "{{ user }}"
-
 ...

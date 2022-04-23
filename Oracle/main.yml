@@ -15,36 +15,53 @@
   become: yes
   tasks:
   - file:
-      path: "/alesson.v/labs"
+      path: "/home/opc/alesson.v/compose-prometheus/"
       state: directory
-
-#- name: create and copy files
-#  hosts: oracle_linux
-#  become: yes
-#  remote_user: "{{ username }}"
-#  gather_facts: no
-#  tasks:
-#  - file:
-#      path: "/alesson.v/labs2/test.txt"
-#      state: touch
-#      owner: "{{ username}}"
-#      group: "{{ username}}"
-#      mode: u=rwx,g-rwx,o-rwx
-#  - copy:
-#      remote_src: "/alesson.v/labs2/test.txt"
-#      dest: "/alesson.v/labs/test.txt"
-#      owner: "{{ username}}"
-#      group: "{{ username}}"
 
 - name: Install packages
   hosts: oracle_linux
   become: yes
   roles:
     - packages
+  tags: packages
+
+- name: Install Locate
+  hosts: oracle_linux
+  become: yes
+  tasks:
+  - yum:
+      state: present
+      name:
+        mlocate
+  - command: updatedb
+  - command: locate -b '\bash_completion.sh'
+  tags: locate
 
 - name: install docker
   hosts: oracle_linux
   become: yes
   roles:
     - docker
+  tags: docker
+
+#- name: Install Terraform
+#  hosts: oracle_linux
+#  become: yes
+#  roles:
+#    - terraform
+#  tags: terraform
+
+#- name: Install python 3.7
+#  hosts: oracle_linux
+#  become: yes
+#  roles:
+#    - python
+#  tags: python
+
+- name: Install Docker compose
+  hosts: oracle_linux
+  become: yes
+  roles:
+    - compose
+  tags: compose
 ...
