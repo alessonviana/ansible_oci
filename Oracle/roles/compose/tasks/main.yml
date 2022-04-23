@@ -1,0 +1,28 @@
+---
+- name: Check if Docker Compose is installed
+  command: docker-compose --version
+  register: command_output
+  ignore_errors: yes
+- debug:
+    var: command_output
+
+- name: Install compose
+  get_url:
+   url: https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
+   dest: /usr/local/bin/docker-compose
+   mode: 'u+x,g+x'
+  when: command_output.rc != 0
+
+- name: Add Docker Compose to path
+  command: ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+  args:
+    creates: /usr/bin/docker-compose
+
+- name: Copy docker-compose
+  copy:
+    src: files/docker-compose/docker-compose.yml
+    dest: /home/opc/alesson.v/compose-prometheus/
+
+- name: Deploy Docker Compose
+  command: docker-compose -f /home/opc/alesson.v/compose-prometheus/docker-compose.yaml up -d
+...
