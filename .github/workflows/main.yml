@@ -1,0 +1,31 @@
+# This is a basic workflow to help you get started with Actions
+name: deploy ansible
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v2
+    - name: Lint Ansible Playbook
+      uses: ansible/ansible-lint-action@master
+      with:
+        targets: ""
+  deployAnsible:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ./.github/actions/ansible
+      with: 
+        playbook: main.yml
+        inventory: hosts/oracle
+        vault-id: .ansible.vault 
