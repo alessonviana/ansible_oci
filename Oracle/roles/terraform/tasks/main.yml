@@ -1,0 +1,25 @@
+- name: Terraform | Install packages for install terraform.
+  yum:
+    name: "{{ terraform_dependence }}"
+    state: present
+
+#- name: Terraform | Add HashiCopr official GPG Key
+#  yum_key:
+#    url: https://apt.releases.hashicorp.com/gpg
+#    state: present
+
+- name: Terraform | Add official HashiCorp Linux repository
+  yum:
+    name: "https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo"
+    filename: terraform
+    state: present
+
+- name: Terraform | Update Centos and repository
+  yum: name=* state=latest update_cache=yes
+
+- name: Terraform | Install package terraform
+  yum:
+    name: terraform
+    state: present
+    force: yes
+...

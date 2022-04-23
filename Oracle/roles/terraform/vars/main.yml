@@ -1,0 +1,5 @@
+terraform_dependence:
+  - yum-utils
+  - gnupg
+  - curl
+
