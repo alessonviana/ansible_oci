@@ -11,7 +11,7 @@
    url: https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
    dest: /usr/local/bin/docker-compose
    mode: 'u+x,g+x'
-  when: command_output.rc != 0
+  when: command_output.rc  >= 1
 
 - name: Add Docker Compose to path
   command: ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
