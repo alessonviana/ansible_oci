@@ -18,7 +18,7 @@ steps:
   - chmod 600 ~/.ssh/id_rsa
   - cat ~/.ssh/id_rsa
   - unset private_key
-  - ansible-playbook --vault-id ${{ ansible_vault_value }} -i hosts/oracle -u opc --ssh-common-args='-o StrictHostKeyChecking=no' --private-key ~/.ssh/id_rsa main.yml
+  - ansible-playbook --vault-id $"ANSIBLE_VAULT_VALUE -i hosts/oracle -u opc --ssh-common-args='-o StrictHostKeyChecking=no' --private-key ~/.ssh/id_rsa main.yml
   when:
     branch:
       - main
