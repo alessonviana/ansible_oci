@@ -15,6 +15,7 @@ steps:
   commands:
   - mkdir -p ~/.ssh/
   - echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
+  - echo "$ANSIBLE_VAULT_VALUE" > Oracle/.ansible.vault
   - chmod 600 ~/.ssh/id_rsa
   - cat ~/.ssh/id_rsa
   - unset private_key
