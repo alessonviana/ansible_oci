@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: docker pull ansible/ansible
+    runs-on: alesson23/terraforandansible:1.0.0
     steps:
     - name: checkout repo
       uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
         targets: ""
   deployAnsible:
     needs: build
-    runs-on: docker pull ansible/ansible
+    runs-on: alesson23/terraforandansible:1.0.0
     steps:
     - uses: actions/checkout@v1
     - uses: ./ansible_oci/Oracle/main.yml
