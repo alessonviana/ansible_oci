@@ -1,0 +1,15 @@
+- name: Apply Ansible playbook
+  image: alesson23/terraforandansible:1.0.0
+  environment:
+    PRIVATE_KEY:
+      from_secret: private_key
+  commands:
+  - mkdir -p ~/.ssh/
+  - echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - cat ~/.ssh/id_rsa
+  - unset private_key
+  - ansible-playbook --vault-id .ansible.vault -i hosts/oracle -u opc --ssh-common-args='-o StrictHostKeyChecking=no' --private-key ~/.ssh/id_rsa main.yml
+  when:
+    branch:
+      - main
