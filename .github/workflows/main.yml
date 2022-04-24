@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Ansible playbook
-        uses: alessonviana/ansible_oci@v2.5.0
+        uses: alessonviana/ansible_oci@v2
         with:
           playbook: ./oracle/main.yml # path to your Ansible playbook
           directory: ./
