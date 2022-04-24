@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: rancher/ansible-runner
     steps:
     - name: checkout repo
       uses: actions/checkout@v2
@@ -21,10 +21,10 @@ jobs:
         targets: ""
   deployAnsible:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: rancher/ansible-runner
     steps:
     - uses: actions/checkout@v1
-    - uses: ./.github/actions/ansible
+    - uses: ./ansible_oci/Oracle/main.yml
       with: 
         playbook: main.yml
         inventory: hosts/oracle
