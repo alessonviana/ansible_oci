@@ -4,6 +4,7 @@ type: docker
 name: oracle_oci
 
 steps:
+
 - name: Apply Ansible playbook
   image: alesson23/terraforandansible:1.0.0
   environment:
@@ -17,7 +18,7 @@ steps:
   - chmod 600 ~/.ssh/id_rsa
   - cat ~/.ssh/id_rsa
   - unset private_key
-  - ansible-playbook --vault-id ${{ ansible_vault_value }} -i hosts/oracle -u opc --ssh-common-args='-o StrictHostKeyChecking=no' --private-key ~/.ssh/id_rsa main.yml
+  - ansible-playbook --vault-id Oracle/.ansible.vault -i Oracle/hosts/oracle -u opc --ssh-common-args='-o StrictHostKeyChecking=no' Oracle/main.yml
   when:
     branch:
       - main
