@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: rancher/ansible-runner
+    runs-on: docker pull ansible/ansible
     steps:
     - name: checkout repo
       uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
         targets: ""
   deployAnsible:
     needs: build
-    runs-on: rancher/ansible-runner
+    runs-on: docker pull ansible/ansible
     steps:
     - uses: actions/checkout@v1
     - uses: ./ansible_oci/Oracle/main.yml
