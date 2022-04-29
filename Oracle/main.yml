@@ -25,7 +25,7 @@
     - packages
   tags: packages
 
-- name: Install Locate
+- name: Install Locate2
   hosts: oracle_linux
   become: yes
   tasks:
@@ -51,12 +51,12 @@
 #    - terraform
 #  tags: terraform
 
-#- name: Install python 3.7
-#  hosts: oracle_linux
-#  become: yes
-#  roles:
-#    - python
-#  tags: python
+- name: Install python 3.7
+  hosts: oracle_linux
+  become: yes
+  roles:
+    - python
+  tags: python
 
 - name: Install Docker compose
   hosts: oracle_linux
